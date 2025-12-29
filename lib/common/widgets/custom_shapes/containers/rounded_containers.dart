@@ -2,8 +2,8 @@ import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 
-class CircularContainers extends StatelessWidget {
-  const CircularContainers({
+class RoundedContainers extends StatelessWidget {
+  const RoundedContainers({
     super.key,
     this.height,
     this.width,

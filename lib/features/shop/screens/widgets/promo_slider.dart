@@ -1,5 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:e_commerce_app/common/widgets/custom_shapes/containers/circular_containers.dart';
+import 'package:e_commerce_app/common/widgets/custom_shapes/containers/rounded_containers.dart';
 import 'package:e_commerce_app/common/widgets/images/rounded_image.dart';
 import 'package:e_commerce_app/features/shop/controllers/crousel_slider_controller.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
@@ -34,7 +34,7 @@ class PromoSlider extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               for (int i = 0; i < banners.length; i++)
-                CircularContainers(
+                RoundedContainers(
                   height: 5,
                   width: 18,
                   radius: 10,

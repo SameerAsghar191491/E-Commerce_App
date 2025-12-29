@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/common/widgets/custom_shapes/containers/circular_containers.dart';
+import 'package:e_commerce_app/common/widgets/custom_shapes/containers/rounded_containers.dart';
 import 'package:e_commerce_app/common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/helpers/helper_functions.dart';
@@ -23,7 +23,7 @@ class PrimaryHeaderContainer extends StatelessWidget {
               Positioned(
                 top: -135,
                 right: -250,
-                child: CircularContainers(
+                child: RoundedContainers(
                   backgroundColor: AppColors.textWhite.withValues(alpha: 0.1),
                   radius: 200,
                   height: 400,
@@ -33,7 +33,7 @@ class PrimaryHeaderContainer extends StatelessWidget {
               Positioned(
                 top: 100,
                 right: -300,
-                child: CircularContainers(
+                child: RoundedContainers(
                   backgroundColor: AppColors.textWhite.withValues(alpha: 0.1),
                   radius: 200,
                   height: 400,
