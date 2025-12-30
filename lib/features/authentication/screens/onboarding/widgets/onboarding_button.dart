@@ -13,11 +13,11 @@ class OnBoardingButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dark = AppHelperFunctions.isDarkMode(context);
+    final dark = HelperFunctions.isDarkMode(context);
     // 1st way
     // final getXcontroller = OnBoardingController.instance;
     return Positioned(
-      bottom: AppDeviceUtils.getBottomNavigationBarHeight(),
+      bottom: DeviceUtils.getBottomNavigationBarHeight(),
       right: AppSizes.defaultSpace,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(

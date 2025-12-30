@@ -23,7 +23,7 @@ class CustomSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final darkMode = AppHelperFunctions.isDarkMode(context);
+    final darkMode = HelperFunctions.isDarkMode(context);
     return Padding(
       padding: padding,
       child: Container(

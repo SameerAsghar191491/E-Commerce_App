@@ -13,18 +13,19 @@ class OnBoardingDotIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dark = AppHelperFunctions.isDarkMode(context);
+    final dark = HelperFunctions.isDarkMode(context);
 
     // 1st way to do it
     // final getXcontroller = OnBoardingController.instance;
     return Positioned(
-      bottom: AppDeviceUtils.getBottomNavigationBarHeight() + 25,
+      bottom: DeviceUtils.getBottomNavigationBarHeight() + 25,
       left: AppSizes.defaultSpace,
       child: SmoothPageIndicator(
         // 1st way
         // onDotClicked: (index) => getXcontroller.dotNavigationClicked(index),
         // 2nd way
-        onDotClicked: (index) => OnBoardingController.instance.dotNavigationClicked(index),
+        onDotClicked: (index) =>
+            OnBoardingController.instance.dotNavigationClicked(index),
         effect: ExpandingDotsEffect(
           activeDotColor: dark ? AppColors.light : AppColors.dark,
           dotHeight: 6,

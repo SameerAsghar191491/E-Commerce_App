@@ -33,7 +33,7 @@ class CircularImage extends StatelessWidget {
         /// if image background color is null, then switch it to light & dark mode color design
         color:
             backgroundColor ??
-            (AppHelperFunctions.isDarkMode(context)
+            (HelperFunctions.isDarkMode(context)
                 ? AppColors.black
                 : AppColors.white),
         borderRadius: BorderRadius.circular(100),

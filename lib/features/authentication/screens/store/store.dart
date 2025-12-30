@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/common/layouts/grid_layout.dart';
 import 'package:e_commerce_app/common/widgets/app_bar/custom_appbar.dart';
+import 'package:e_commerce_app/common/widgets/app_bar/tab_bar.dart';
 import 'package:e_commerce_app/common/widgets/custom_cart/custom_cartcounter.dart';
 import 'package:e_commerce_app/common/widgets/custom_shapes/containers/rounded_containers.dart';
 import 'package:e_commerce_app/common/widgets/images/circular_image.dart';
@@ -18,16 +19,15 @@ class StoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    try {
-      return Scaffold(
+    return DefaultTabController(
+      length: 5,
+      child: Scaffold(
         appBar: CustomAppBar(
           title: Text(
             "Store",
             style: Theme.of(context).textTheme.headlineMedium,
           ),
-          actions: [
-            CartCounterIcon(iconColor: AppColors.dark, onPressed: () {}),
-          ],
+          actions: [CartCounterIcon(onPressed: () {})],
         ),
         body: NestedScrollView(
           headerSliverBuilder: (_, innerBoxIsScrolled) {
@@ -37,10 +37,10 @@ class StoreScreen extends StatelessWidget {
                 automaticallyImplyLeading: false,
                 pinned: true,
                 floating: true,
-                backgroundColor: AppHelperFunctions.isDarkMode(context)
+                backgroundColor: HelperFunctions.isDarkMode(context)
                     ? AppColors.black
                     : AppColors.white,
-                expandedHeight: 440,
+                expandedHeight: 250,
 
                 flexibleSpace: Padding(
                   padding: const EdgeInsetsGeometry.all(AppSizes.defaultSpace),
@@ -50,7 +50,7 @@ class StoreScreen extends StatelessWidget {
                     children: [
                       /// -- Search Bar
                       const SizedBox(height: AppSizes.spaceBtwItems),
-                      const CustomSearchBar(
+                      CustomSearchBar(
                         padding: EdgeInsets.zero,
                         text: "Search In Store",
                         showBorder: true,
@@ -84,7 +84,7 @@ class StoreScreen extends StatelessWidget {
                                       image: AppImages.clothIcon,
                                       backgroundColor: Colors.transparent,
                                       overlayColor:
-                                          AppHelperFunctions.isDarkMode(context)
+                                          HelperFunctions.isDarkMode(context)
                                           ? AppColors.white
                                           : AppColors.black,
                                     ),
@@ -127,17 +127,23 @@ class StoreScreen extends StatelessWidget {
                     ],
                   ),
                 ),
+
+                /// -- Tabs
+                bottom: CustomTabBar(
+                  tabs: const [
+                    Tab(child: Text('Sports')),
+                    Tab(child: Text('Furniture')),
+                    Tab(child: Text('Electronics')),
+                    Tab(child: Text('Clothes')),
+                    Tab(child: Text('Cosmetics')),
+                  ],
+                ),
               ),
             ];
           },
           body: Container(),
         ),
-      );
-    } catch (e) {
-      debugPrint(e.toString());
-      return SizedBox(
-        child: Center(child: Icon(Icons.error, color: AppColors.error)),
-      );
-    }
+      ),
+    );
   }
 }

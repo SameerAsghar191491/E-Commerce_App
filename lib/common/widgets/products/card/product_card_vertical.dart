@@ -17,7 +17,7 @@ class ProductCardVertical extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final darkMode = AppHelperFunctions.isDarkMode(context);
+    final darkMode = HelperFunctions.isDarkMode(context);
     return GestureDetector(
       onTap: () {},
       child: Container(
@@ -80,8 +80,8 @@ class ProductCardVertical extends StatelessWidget {
             const SizedBox(height: AppSizes.spaceBtwItems / 2),
 
             /// -- Details
-            Padding(
-              padding: const EdgeInsets.only(left: AppSizes.sm),
+            const Padding(
+              padding: EdgeInsets.only(left: AppSizes.sm),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -89,33 +89,34 @@ class ProductCardVertical extends StatelessWidget {
                     title: "Green Nike Air Shoes",
                     smallSize: true,
                   ),
-                  const SizedBox(height: AppSizes.spaceBtwItems / 2),
-                  const BrandTitleWithVerifiedIcon(title: 'Nike'),
-                  // Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const ProductPriceText(price: '35.5'),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: AppColors.dark,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(AppSizes.cardRadiusMd),
-                            bottomRight: Radius.circular(
-                              AppSizes.productImageRadius,
-                            ),
-                          ),
-                        ),
-                        child: SizedBox(
-                          height: AppSizes.iconLg * 1.2,
-                          width: AppSizes.iconLg * 1.2,
-                          child: Icon(Iconsax.add, color: AppColors.white),
-                        ),
-                      ),
-                    ],
-                  ),
+                  SizedBox(height: AppSizes.spaceBtwItems / 2),
+                  BrandTitleWithVerifiedIcon(title: 'Nike'),
                 ],
               ),
+            ),
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: AppSizes.sm),
+                  child: const ProductPriceText(price: '35.5'),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.dark,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(AppSizes.cardRadiusMd),
+                      bottomRight: Radius.circular(AppSizes.productImageRadius),
+                    ),
+                  ),
+                  child: const SizedBox(
+                    height: AppSizes.iconLg * 1.2,
+                    width: AppSizes.iconLg * 1.2,
+                    child: Icon(Iconsax.add, color: AppColors.white),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

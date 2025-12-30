@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-class AppHelperFunctions {
+class HelperFunctions {
   static Color? getColor(String value) {
     /// Define your product specific colors here and it will match the attribute colors and show specific 🟠🟡🟢🔵🟣🟤
 
@@ -40,9 +40,9 @@ class AppHelperFunctions {
   }
 
   static void showSnackBar(String message) {
-    ScaffoldMessenger.of(Get.context!).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
+    ScaffoldMessenger.of(
+      Get.context!,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 
   static void showAlert(String title, String message) {
@@ -64,10 +64,7 @@ class AppHelperFunctions {
   }
 
   static void navigateToScreen(BuildContext context, Widget screen) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => screen),
-    );
+    Navigator.push(context, MaterialPageRoute(builder: (_) => screen));
   }
 
   static String truncateText(String text, int maxLength) {
@@ -94,7 +91,10 @@ class AppHelperFunctions {
     return MediaQuery.of(Get.context!).size.width;
   }
 
-  static String getFormattedDate(DateTime date, {String format = 'dd MMM yyyy'}) {
+  static String getFormattedDate(
+    DateTime date, {
+    String format = 'dd MMM yyyy',
+  }) {
     return DateFormat(format).format(date);
   }
 
@@ -105,7 +105,10 @@ class AppHelperFunctions {
   static List<Widget> wrapWidgets(List<Widget> widgets, int rowSize) {
     final wrappedList = <Widget>[];
     for (var i = 0; i < widgets.length; i += rowSize) {
-      final rowChildren = widgets.sublist(i, i + rowSize > widgets.length ? widgets.length : i + rowSize);
+      final rowChildren = widgets.sublist(
+        i,
+        i + rowSize > widgets.length ? widgets.length : i + rowSize,
+      );
       wrappedList.add(Row(children: rowChildren));
     }
     return wrappedList;

@@ -24,6 +24,9 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   // AppBar
+                  // const SizedBox(
+                  //   height: AppSizes.spaceBtwSections,
+                  // ), // For Emulator cause there is issue
                   const HomeScreenAppBar(),
                   const SizedBox(height: AppSizes.spaceBtwSections),
                   // SearchBar

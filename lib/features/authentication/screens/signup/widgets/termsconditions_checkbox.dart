@@ -5,11 +5,11 @@ import 'package:e_commerce_app/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 
 class TermsAndConditionsCheckBox extends StatelessWidget {
-  const TermsAndConditionsCheckBox({super.key,});
+  const TermsAndConditionsCheckBox({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final dark = AppHelperFunctions.isDarkMode(context);
+    final dark = HelperFunctions.isDarkMode(context);
     return Row(
       children: [
         SizedBox(

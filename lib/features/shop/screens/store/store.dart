@@ -37,7 +37,7 @@ class StoreScreen extends StatelessWidget {
                 automaticallyImplyLeading: false,
                 pinned: true,
                 floating: true,
-                backgroundColor: AppHelperFunctions.isDarkMode(context)
+                backgroundColor: HelperFunctions.isDarkMode(context)
                     ? AppColors.black
                     : AppColors.white,
                 expandedHeight: 440,
@@ -84,7 +84,7 @@ class StoreScreen extends StatelessWidget {
                                       image: AppImages.clothIcon,
                                       backgroundColor: Colors.transparent,
                                       overlayColor:
-                                          AppHelperFunctions.isDarkMode(context)
+                                          HelperFunctions.isDarkMode(context)
                                           ? AppColors.white
                                           : AppColors.black,
                                     ),

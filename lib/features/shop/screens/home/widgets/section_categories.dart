@@ -9,7 +9,7 @@ class SectionCategories extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       // color: Colors.amber,
-      height: 80,
+      height: 90,
       width: double.infinity,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,

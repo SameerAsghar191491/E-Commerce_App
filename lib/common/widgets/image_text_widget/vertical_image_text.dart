@@ -20,7 +20,7 @@ class VerticalImageText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final darkMode = AppHelperFunctions.isDarkMode(context);
+    final darkMode = HelperFunctions.isDarkMode(context);
     return GestureDetector(
       onTap: onTap,
       child: Padding(

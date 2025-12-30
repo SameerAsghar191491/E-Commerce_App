@@ -37,7 +37,7 @@ class EmailVerification extends StatelessWidget {
             children: [
               Image(
                 image: AssetImage(AppImages.deliveredEmailIllustration),
-                width: AppHelperFunctions.screenWidth() * 0.6,
+                width: HelperFunctions.screenWidth() * 0.6,
               ),
               const SizedBox(height: AppSizes.spaceBtwSections),
               Text(

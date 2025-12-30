@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final dark = AppHelperFunctions.isDarkMode(context);
+    final dark = HelperFunctions.isDarkMode(context);
     return Scaffold(
       backgroundColor: dark ? AppColors.dark : AppColors.white,
       body: Center(
@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
             const SizedBox(width: 40),
             Image(
               // height: AppHelperFunctions.screenHeight() * 0.5,
-              width: AppHelperFunctions.screenWidth() * 0.8,
+              width: HelperFunctions.screenWidth() * 0.8,
               image: AssetImage("assets/logos/e_commerce_logo_3.png"),
               // fit: BoxFit.cover,
             ),

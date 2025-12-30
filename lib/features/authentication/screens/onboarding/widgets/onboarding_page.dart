@@ -18,8 +18,8 @@ class OnBoardingPage extends StatelessWidget {
       child: Column(
         children: [
           Image(
-            height: AppDeviceUtils.getScreenHeight() * 0.6,
-            width: AppDeviceUtils.getScreenWidth(context) * 0.8,
+            height: DeviceUtils.getScreenHeight() * 0.6,
+            width: DeviceUtils.getScreenWidth(context) * 0.8,
             image: AssetImage(image),
           ),
           Text(
