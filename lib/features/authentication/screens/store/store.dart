@@ -40,7 +40,7 @@ class StoreScreen extends StatelessWidget {
                 backgroundColor: HelperFunctions.isDarkMode(context)
                     ? AppColors.black
                     : AppColors.white,
-                expandedHeight: 250,
+                expandedHeight: 440,
 
                 flexibleSpace: Padding(
                   padding: const EdgeInsetsGeometry.all(AppSizes.defaultSpace),
@@ -141,7 +141,15 @@ class StoreScreen extends StatelessWidget {
               ),
             ];
           },
-          body: Container(),
+          body: const TabBarView(
+            children: [
+              Center(child: Text("Sports Content")),
+              Center(child: Text("Furniture Content")),
+              Center(child: Text("Electronics Content")),
+              Center(child: Text("Clothes Content")),
+              Center(child: Text("Cosmetics Content")),
+            ],
+          ),
         ),
       ),
     );
