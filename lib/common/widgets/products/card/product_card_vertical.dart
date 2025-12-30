@@ -2,6 +2,7 @@ import 'package:e_commerce_app/common/icons/circular_icon.dart';
 import 'package:e_commerce_app/common/styles/shadow.dart';
 import 'package:e_commerce_app/common/widgets/custom_shapes/containers/rounded_containers.dart';
 import 'package:e_commerce_app/common/widgets/images/rounded_image.dart';
+import 'package:e_commerce_app/common/widgets/text/brand_title_with_verified_icon.dart';
 import 'package:e_commerce_app/common/widgets/text/product_price_text.dart';
 import 'package:e_commerce_app/common/widgets/text/product_title_text.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
@@ -89,48 +90,32 @@ class ProductCardVertical extends StatelessWidget {
                     smallSize: true,
                   ),
                   const SizedBox(height: AppSizes.spaceBtwItems / 2),
+                  const BrandTitleWithVerifiedIcon(title: 'Nike'),
+                  // Spacer(),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        'Nike',
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: Theme.of(context).textTheme.labelMedium,
-                      ),
-                      const SizedBox(width: AppSizes.xs),
-                      const Icon(
-                        Iconsax.verify5,
-                        color: AppColors.primary,
-                        size: AppSizes.iconXs,
+                      const ProductPriceText(price: '35.5'),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: AppColors.dark,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(AppSizes.cardRadiusMd),
+                            bottomRight: Radius.circular(
+                              AppSizes.productImageRadius,
+                            ),
+                          ),
+                        ),
+                        child: SizedBox(
+                          height: AppSizes.iconLg * 1.2,
+                          width: AppSizes.iconLg * 1.2,
+                          child: Icon(Iconsax.add, color: AppColors.white),
+                        ),
                       ),
                     ],
                   ),
                 ],
               ),
-            ),
-            Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: AppSizes.sm),
-                  child: ProductPriceText(price: '35.5', isLarge: false),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.dark,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(AppSizes.cardRadiusMd),
-                      bottomRight: Radius.circular(AppSizes.productImageRadius),
-                    ),
-                  ),
-                  child: SizedBox(
-                    height: AppSizes.iconLg * 1.2,
-                    width: AppSizes.iconLg * 1.2,
-                    child: Icon(Iconsax.add, color: AppColors.white),
-                  ),
-                ),
-              ],
             ),
           ],
         ),

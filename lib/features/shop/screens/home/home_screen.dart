@@ -3,9 +3,9 @@ import 'package:e_commerce_app/common/widgets/custom_shapes/containers/primary_h
 import 'package:e_commerce_app/common/widgets/products/card/product_card_vertical.dart';
 import 'package:e_commerce_app/common/widgets/search_bar/custom_searchbar.dart';
 import 'package:e_commerce_app/common/widgets/text/section_heading.dart';
-import 'package:e_commerce_app/features/shop/screens/widgets/home_appbar.dart';
-import 'package:e_commerce_app/features/shop/screens/widgets/promo_slider.dart';
-import 'package:e_commerce_app/features/shop/screens/widgets/section_categories.dart';
+import 'package:e_commerce_app/features/shop/screens/home/widgets/home_appbar.dart';
+import 'package:e_commerce_app/features/shop/screens/home/widgets/promo_slider.dart';
+import 'package:e_commerce_app/features/shop/screens/home/widgets/section_categories.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/constants/image_strings.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
@@ -34,16 +34,11 @@ class HomeScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(left: AppSizes.defaultSpace),
                     child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: AppSizes.defaultSpace,
-                          ),
-                          child: SectionHeading(
-                            title: "Popular Categories",
-                            onPressed: () {},
-                            showActionButton: false,
-                            textColor: AppColors.white,
-                          ),
+                        SectionHeading(
+                          title: "Popular Categories",
+                          onPressed: () {},
+                          showActionButton: false,
+                          textColor: AppColors.white,
                         ),
                         const SizedBox(height: AppSizes.spaceBtwItems),
                         const SectionCategories(),
@@ -59,7 +54,7 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   /// -- Promo Slider
-                  const PromoSlider(
+                  PromoSlider(
                     banners: [
                       AppImages.promoBanner1,
                       AppImages.promoBanner2,

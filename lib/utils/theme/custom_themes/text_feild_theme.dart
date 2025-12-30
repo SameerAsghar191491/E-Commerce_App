@@ -18,7 +18,7 @@ class AppTextFeildTheme {
     ),
     errorStyle: const TextStyle().copyWith(fontStyle: FontStyle.normal),
     floatingLabelStyle: const TextStyle().copyWith(
-      color: AppColors.black.withOpacity(0.8),
+      color: AppColors.black.withValues(alpha: 0.8),
     ),
     border: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
@@ -56,7 +56,7 @@ class AppTextFeildTheme {
       color: AppColors.white,
     ),
     floatingLabelStyle: const TextStyle().copyWith(
-      color: AppColors.white.withOpacity(0.8),
+      color: AppColors.white.withValues(alpha: 0.8),
     ),
     border: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),

@@ -11,17 +11,21 @@ class CustomSearchBar extends StatelessWidget {
     this.icon = Iconsax.search_normal,
     this.showBackGround = true,
     this.showBorder = true,
+    this.padding = const EdgeInsets.symmetric(
+      horizontal: AppSizes.defaultSpace,
+    ),
   });
 
   final String text;
   final IconData icon;
   final bool showBackGround, showBorder;
+  final EdgeInsetsGeometry padding;
 
   @override
   Widget build(BuildContext context) {
     final darkMode = AppHelperFunctions.isDarkMode(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppSizes.defaultSpace),
+      padding: padding,
       child: Container(
         height: 56,
         decoration: BoxDecoration(
@@ -30,8 +34,8 @@ class CustomSearchBar extends StatelessWidget {
                     ? AppColors.dark
                     : AppColors.white
               : Colors.transparent,
-          border: showBorder ? Border.all(color: AppColors.white) : null,
           borderRadius: BorderRadius.circular(AppSizes.borderRadiusLg),
+          border: showBorder ? Border.all(color: AppColors.grey) : null,
         ),
         child: Row(
           children: [
@@ -39,17 +43,12 @@ class CustomSearchBar extends StatelessWidget {
               padding: const EdgeInsets.only(left: AppSizes.spaceBtwItems),
               child: Icon(
                 icon,
-                color: darkMode ? AppColors.white : AppColors.darkerGrey,
+                color: darkMode ? AppColors.darkerGrey : AppColors.darkGrey,
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: AppSizes.spaceBtwItems),
-              child: Text(
-                text,
-                style: Theme.of(context).textTheme.bodyMedium!.apply(
-                  color: darkMode ? AppColors.white : AppColors.darkerGrey,
-                ),
-              ),
+              child: Text(text, style: Theme.of(context).textTheme.bodySmall!),
             ),
           ],
         ),

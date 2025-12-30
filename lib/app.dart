@@ -2,7 +2,7 @@
 
 import 'package:e_commerce_app/features/authentication/screens/login/login.dart';
 import 'package:e_commerce_app/features/authentication/screens/onboarding/onboarding.dart';
-import 'package:e_commerce_app/features/shop/screens/home_screen.dart';
+import 'package:e_commerce_app/features/shop/screens/home/home_screen.dart';
 import 'package:e_commerce_app/navigation_menu.dart';
 import 'package:e_commerce_app/splash_screen.dart';
 import 'package:e_commerce_app/utils/theme/theme.dart';
