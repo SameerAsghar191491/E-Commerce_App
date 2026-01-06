@@ -49,7 +49,8 @@ class ProductDetailsHeader extends StatelessWidget {
                     backgroundColor: darkMode
                         ? AppColors.dark
                         : AppColors.white,
-                    border: Border.all(color: AppColors.primary),
+                    // border: Border.all(color: AppColors.primary),
+                    border: Border.all(color: AppColors.grey),
                     imageUrl: AppImages.productImage3,
                   ),
                 ),
@@ -58,7 +59,7 @@ class ProductDetailsHeader extends StatelessWidget {
 
             // -- AppBar
             CustomAppBar(
-              isLeading: true,
+              showBackArrow: true,
               actions: [
                 CircularIcon(
                   icon: Iconsax.heart5,

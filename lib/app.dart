@@ -3,7 +3,8 @@
 import 'package:e_commerce_app/features/authentication/screens/login/login.dart';
 import 'package:e_commerce_app/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:e_commerce_app/features/shop/screens/home/home_screen.dart';
-import 'package:e_commerce_app/features/shop/screens/product_details/widgets/product_details.dart';
+import 'package:e_commerce_app/features/shop/screens/product_details/product_details.dart';
+import 'package:e_commerce_app/features/shop/screens/product_reviews/product_reviews.dart';
 import 'package:e_commerce_app/features/shop/screens/store/store.dart';
 import 'package:e_commerce_app/navigation_menu.dart';
 import 'package:e_commerce_app/splash_screen.dart';
@@ -30,7 +31,7 @@ class MainApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: MyAppTheme.lightTheme,
       darkTheme: MyAppTheme.darkTheme,
-      home: ProductDetails(),
+      home: ProductReviewsScreen(),
     );
   }
 }

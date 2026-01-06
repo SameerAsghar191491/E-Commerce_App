@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class AppElevatedButtonTheme {
@@ -6,10 +7,10 @@ class AppElevatedButtonTheme {
         style: ElevatedButton.styleFrom(
           elevation: 0,
           foregroundColor: Colors.white,
-          backgroundColor: Colors.blue,
+          backgroundColor: AppColors.primary,
           disabledForegroundColor: Colors.grey,
           disabledBackgroundColor: Colors.grey,
-          side: const BorderSide(color: Colors.blue),
+          side: const BorderSide(color: AppColors.primary),
           padding: const EdgeInsets.symmetric(vertical: 18),
           textStyle: const TextStyle(
             fontSize: 16,
@@ -26,10 +27,10 @@ class AppElevatedButtonTheme {
         style: ElevatedButton.styleFrom(
           elevation: 0,
           foregroundColor: Colors.white,
-          backgroundColor: Colors.blue,
+          backgroundColor: AppColors.primary,
           disabledForegroundColor: Colors.grey,
           disabledBackgroundColor: Colors.grey,
-          side: const BorderSide(color: Colors.blue),
+          side: const BorderSide(color: AppColors.primary),
           padding: const EdgeInsets.symmetric(vertical: 18),
           textStyle: const TextStyle(
             fontSize: 16,

@@ -6,7 +6,7 @@ import 'package:e_commerce_app/common/widgets/text/brand_title_with_verified_ico
 import 'package:e_commerce_app/common/widgets/text/discount_tag.dart';
 import 'package:e_commerce_app/common/widgets/text/product_price_text.dart';
 import 'package:e_commerce_app/common/widgets/text/product_title_text.dart';
-import 'package:e_commerce_app/features/shop/screens/product_details/widgets/product_details.dart';
+import 'package:e_commerce_app/features/shop/screens/product_details/product_details.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/constants/image_strings.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';

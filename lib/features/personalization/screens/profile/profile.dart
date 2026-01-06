@@ -13,7 +13,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: Text("Profile"), isLeading: true),
+      appBar: CustomAppBar(title: Text("Profile"), showBackArrow: true),
 
       // -- Body
       body: SingleChildScrollView(
