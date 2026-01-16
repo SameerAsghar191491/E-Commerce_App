@@ -39,7 +39,7 @@ class OnBoardingButton extends StatelessWidget {
           // 2nd way
           if (OnBoardingController.instance.currentPageIndex.value == 2) {
             /// Go To Login Page
-            Get.to(Login());
+            Get.offAll(Login());
           } else {
             OnBoardingController.instance.pageController.nextPage(
               duration: Duration(seconds: 1),
