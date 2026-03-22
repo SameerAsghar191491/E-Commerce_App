@@ -27,7 +27,7 @@ class Signup extends StatelessWidget {
               ),
               const SizedBox(height: AppSizes.defaultSpace),
               // SignUp Form
-              const SignupForm(),
+              SignupForm(),
               const SizedBox(height: AppSizes.spaceBtwSections),
               // Form Divider
               const FormDivider(),

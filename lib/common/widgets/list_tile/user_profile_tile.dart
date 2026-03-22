@@ -1,15 +1,24 @@
 import 'package:e_commerce_app/common/widgets/images/rounded_image.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
-import 'package:e_commerce_app/utils/constants/image_strings.dart';
 import 'package:flutter/material.dart';
 
 class UserProfileTile extends StatelessWidget {
-  const UserProfileTile({required this.title, required this.subTitle, super.key, this.onPressed, this.icon});
+  const UserProfileTile({
+    required this.title,
+    required this.subTitle,
+    super.key,
+    this.onPressed,
+    this.icon,
+    required this.image,
+    this.isNetworkImage = false,
+  });
 
   final VoidCallback? onPressed;
   final IconData? icon;
   final String title;
   final String subTitle;
+  final String image;
+  final bool isNetworkImage;
 
 
   @override
@@ -18,7 +27,8 @@ class UserProfileTile extends StatelessWidget {
       leading: RoundedImage(
         height: 56,
         width: 56,
-        imageUrl: AppImages.user,
+        isNetworkImage: isNetworkImage,
+        imageUrl: image,
         backgroundColor: Colors.transparent,
       ),
       title: Text(

@@ -1,11 +1,15 @@
+import 'package:e_commerce_app/features/authentication/controllers/login/login_controller.dart';
 import 'package:e_commerce_app/features/authentication/screens/login/widgets/forget_password.dart';
 import 'package:e_commerce_app/features/authentication/screens/signup/signup.dart';
-import 'package:e_commerce_app/navigation_menu.dart';
+import 'package:e_commerce_app/features/personalization/screens/settings/widgets/re_auth_loginForm.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:e_commerce_app/utils/constants/text_strings.dart';
+import 'package:e_commerce_app/utils/validators/validation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_instance/get_instance.dart';
 import 'package:get/route_manager.dart';
+import 'package:get/state_manager.dart';
 import 'package:iconsax/iconsax.dart';
 
 class LoginForm extends StatelessWidget {
@@ -13,10 +17,20 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loginController = Get.put(LoginController());
+    loginController.emailController.text =
+        loginController.db.read("REMEMBER_ME_EMAIL") ?? "";
+    loginController.passwordController.text =
+        loginController.db.read("REMEMBER_ME_PASSWORD") ?? "";
     return Form(
+      key: loginController.loginFormkey,
       child: Column(
         children: [
           TextFormField(
+            controller: loginController.emailController,
+            validator: (value) => Validator.validateEmail(
+              loginController.emailController.text.trim(),
+            ),
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
@@ -26,14 +40,25 @@ class LoginForm extends StatelessWidget {
             ),
           ),
           const SizedBox(height: AppSizes.spaceBtwInputFields),
-          TextFormField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+          Obx(
+            () => TextFormField(
+              controller: loginController.passwordController,
+              validator: (value) => Validator.validatePassword(
+                loginController.passwordController.text.trim(),
               ),
-              prefixIcon: Icon(Iconsax.password_check),
-              labelText: AppTexts.password,
-              suffixIcon: Icon(Iconsax.eye_slash),
+              obscureText: loginController.hidePassword.value,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Iconsax.password_check),
+                labelText: AppTexts.password,
+                suffixIcon: IconButton(
+                  onPressed: () => loginController.hidePassword.value =
+                      !loginController.hidePassword.value,
+                  icon: loginController.hidePassword.value
+                      ? Icon(Iconsax.eye_slash)
+                      : Icon(Iconsax.eye),
+                ),
+              ),
             ),
           ),
           const SizedBox(height: AppSizes.defaultSpace),
@@ -45,11 +70,19 @@ class LoginForm extends StatelessWidget {
                   SizedBox(
                     height: 24,
                     width: 24,
-                    child: Checkbox(
-                      value: true,
-                      onChanged: (value) {},
-                      fillColor: WidgetStatePropertyAll(AppColors.primary),
-                      checkColor: AppColors.white,
+                    child: Obx(
+                      () => Checkbox(
+                        value: loginController.rememberMe.value,
+                        onChanged: (value) =>
+                            loginController.rememberMe.value = value!,
+                        side: loginController.rememberMe.value
+                            ? null
+                            : BorderSide(),
+                        fillColor: loginController.rememberMe.value
+                            ? WidgetStatePropertyAll(AppColors.primary)
+                            : null,
+                        checkColor: AppColors.white,
+                      ),
                     ),
                   ),
                   const SizedBox(width: AppSizes.sm),
@@ -68,9 +101,9 @@ class LoginForm extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {
-                Get.off(() => NavigationMenu());
-              },
+              onPressed: () async => await loginController.loginUser(),
+              // onPressed: () => Get.to(() => ReAuthLoginform()),
+              // Get.off(() => NavigationMenu());
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,
               ),
@@ -88,7 +121,7 @@ class LoginForm extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                Get.to(() => Signup());
+                Get.to(() => const Signup());
               },
               child: Text(
                 AppTexts.createAccount,

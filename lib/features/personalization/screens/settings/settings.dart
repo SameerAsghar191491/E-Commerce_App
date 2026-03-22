@@ -3,14 +3,19 @@ import 'package:e_commerce_app/common/widgets/custom_shapes/containers/primary_h
 import 'package:e_commerce_app/common/widgets/list_tile/user_profile_tile.dart';
 import 'package:e_commerce_app/common/widgets/text/section_heading.dart';
 import 'package:e_commerce_app/common/widgets/list_tile/settings_menu_tile.dart';
+import 'package:e_commerce_app/features/authentication/controllers/login/login_controller.dart';
+import 'package:e_commerce_app/features/personalization/controllers/user_controller.dart';
 import 'package:e_commerce_app/features/personalization/screens/address/address.dart';
 import 'package:e_commerce_app/features/personalization/screens/cart/cart.dart';
 import 'package:e_commerce_app/features/personalization/screens/profile/profile.dart';
 import 'package:e_commerce_app/features/shop/screens/order/order.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
+import 'package:e_commerce_app/utils/constants/image_strings.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
+import 'package:e_commerce_app/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/get_core.dart';
+import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -19,6 +24,12 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
+    final loginController = Get.put(LoginController());
+    bool isNetworkImage = false;
+    if (controller.user.value.profilePicture!.isNotEmpty) {
+      isNetworkImage = true;
+    }
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -40,13 +51,22 @@ class SettingsScreen extends StatelessWidget {
                   // const SizedBox(height: AppSizes.spaceBtwItems),
 
                   // User Profile Card
-                  UserProfileTile(
-                    title: "Coding with Sameer",
-                    subTitle: "sameerasghar018@gmail.com",
-                    icon: Iconsax.edit,
-                    onPressed: () {
-                      Get.to(ProfileScreen());
-                    },
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: AppSizes.defaultSpace / 2,
+                    ),
+                    child: UserProfileTile(
+                      isNetworkImage: isNetworkImage, 
+                      image: isNetworkImage
+                          ? controller.user.value.profilePicture!
+                          : AppImages.user,
+                      title: controller.user.value.fullName ?? "",
+                      subTitle: controller.user.value.email ?? "",
+                      icon: Iconsax.edit,
+                      onPressed: () {
+                        Get.to(() => ProfileScreen());
+                      },
+                    ),
                   ),
                   const SizedBox(height: AppSizes.spaceBtwSections),
                 ],
@@ -134,6 +154,87 @@ class SettingsScreen extends StatelessWidget {
                     title: "HD Image Quality",
                     subTitle: "Set image quality to be seen",
                     trailing: Switch(value: false, onChanged: (value) {}),
+                  ),
+                  const SizedBox(height: AppSizes.defaultSpace),
+                  OutlinedButton(
+                    // style: OutlinedButton.styleFrom(side: BorderSide(width: 1)),
+                    onPressed: () => showDialog(
+                      context: Get.overlayContext!,
+                      builder: (context) => Dialog(
+                        child: Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Column(
+                            mainAxisAlignment: .center,
+                            crossAxisAlignment: .center,
+                            mainAxisSize: .min,
+                            children: [
+                              Text(
+                                "Logout",
+                                style: Theme.of(
+                                  context,
+                                ).textTheme.headlineMedium,
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(10),
+                                child: Text(
+                                  "Are you sure, You want to logout?",
+                                  textAlign: TextAlign.start,
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                ),
+                              ),
+                              // const SizedBox(height: AppSizes.defaultSpace),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      padding: EdgeInsets.all(10),
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor:
+                                              HelperFunctions.isDarkMode(
+                                                context,
+                                              )
+                                              ? AppColors.light
+                                              : Colors.transparent,
+                                          side: BorderSide(
+                                            color: AppColors.black,
+                                          ),
+                                        ),
+                                        onPressed: () => Navigator.pop(context),
+                                        child: Text(
+                                          "Cancel",
+                                          style: TextStyle(
+                                            color: AppColors.black,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: AppSizes.defaultSpace / 2,
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      padding: EdgeInsets.all(10),
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          // backgroundColor: Colors.red.shade400,
+                                          side: BorderSide.none,
+                                        ),
+                                        onPressed: () =>
+                                            loginController.logoutUser(),
+                                        child: Text("Confirm"),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    child: Center(child: Text("Logout")),
                   ),
                 ],
               ),

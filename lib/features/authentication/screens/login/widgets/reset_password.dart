@@ -9,7 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ResetPassword extends StatelessWidget {
-  const ResetPassword({super.key});
+  const ResetPassword({super.key, required this.email});
+
+  final String email;
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +20,7 @@ class ResetPassword extends StatelessWidget {
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            onPressed: () {
-              Get.off(() => LoginScreen());
-            },
+            onPressed: () => Get.off(() => LoginScreen()),
             icon: Icon(CupertinoIcons.clear),
           ),
         ],
@@ -41,12 +41,9 @@ class ResetPassword extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
 
-              // const SizedBox(height: AppSizes.spaceBtwItems),
+              const SizedBox(height: AppSizes.spaceBtwItems),
 
-              // Text(
-              //   "sameerasghar018@gmail.com",
-              //   style: Theme.of(context).textTheme.bodyLarge,
-              // ),
+              Text(email, style: Theme.of(context).textTheme.bodyLarge),
               const SizedBox(height: AppSizes.spaceBtwItems),
 
               const Text(
@@ -65,9 +62,7 @@ class ResetPassword extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  onPressed: () {
-                    // Get.offAll(() => const Login());
-                  },
+                  onPressed: () => Get.offAll(() => LoginScreen()),
                   child: const Text(AppTexts.done),
                 ),
               ),

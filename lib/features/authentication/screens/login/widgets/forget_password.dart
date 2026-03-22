@@ -1,7 +1,8 @@
-import 'package:e_commerce_app/features/authentication/screens/login/widgets/reset_password.dart';
+import 'package:e_commerce_app/features/authentication/controllers/forget_password/forget_password_controller.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:e_commerce_app/utils/constants/text_strings.dart';
+import 'package:e_commerce_app/utils/validators/validation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -11,6 +12,7 @@ class ForgetPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ForgetPasswordController());
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -36,13 +38,18 @@ class ForgetPassword extends StatelessWidget {
 
             const SizedBox(height: AppSizes.spaceBtwSections * 2),
 
-            TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+            Form(
+              key: controller.emailformKey,
+              child: TextFormField(
+                controller: controller.email,
+                validator: (value) => Validator.validateEmail(value),
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  prefixIcon: Icon(Iconsax.direct_right),
+                  labelText: AppTexts.email,
                 ),
-                prefixIcon: Icon(Iconsax.direct_right),
-                labelText: AppTexts.email,
               ),
             ),
 
@@ -52,7 +59,8 @@ class ForgetPassword extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  Get.to(() => ResetPassword());
+                  // Get.to(() => ResetPassword(email: controller.email.text.trim(),));
+                  controller.resetPasswordEmailSend();
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,

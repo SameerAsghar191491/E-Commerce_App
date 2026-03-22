@@ -1,6 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce_app/common/shimmer_effect/shimmer_effect.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:e_commerce_app/utils/helpers/helper_functions.dart';
+import 'package:e_commerce_app/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
 
 class CircularImage extends StatelessWidget {
@@ -38,13 +41,16 @@ class CircularImage extends StatelessWidget {
                 : AppColors.white),
         borderRadius: BorderRadius.circular(100),
       ),
-      child: Image(
-        fit: fit,
-        image: isNetworkImage
-            ? NetworkImage(image)
-            : AssetImage(image) as ImageProvider,
-        color: overlayColor,
-      ),
+      child: isNetworkImage
+          ? CachedNetworkImage(
+              fit: fit,
+              color: overlayColor,
+              imageUrl: image,
+              errorWidget: (context, url, error) => Icon(Icons.error),
+              progressIndicatorBuilder: (context, url, progress) =>
+                  ShimmerEffect(height: height, width: width),
+            )
+          : Image(fit: fit, image: AssetImage(image) as ImageProvider, color: overlayColor,),
     );
   }
 }

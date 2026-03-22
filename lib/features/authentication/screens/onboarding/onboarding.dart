@@ -1,6 +1,6 @@
 // ignore_for_file: unused_import
 
-import 'package:e_commerce_app/features/authentication/controllers/onboarding_controller.dart';
+import 'package:e_commerce_app/features/authentication/controllers/onboarding/onboarding_controller.dart';
 import 'package:e_commerce_app/features/authentication/screens/onboarding/widgets/onboarding_button.dart';
 import 'package:e_commerce_app/features/authentication/screens/onboarding/widgets/onboarding_dot_indicator.dart';
 import 'package:e_commerce_app/features/authentication/screens/onboarding/widgets/onboarding_page.dart';

@@ -1,5 +1,6 @@
 // ignore_for_file: unused_import
 
+import 'package:e_commerce_app/bindings/general_bindings.dart';
 import 'package:e_commerce_app/features/authentication/screens/login/login.dart';
 import 'package:e_commerce_app/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:e_commerce_app/features/personalization/screens/address/address.dart';
@@ -36,6 +37,7 @@ class MainApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: MyAppTheme.lightTheme,
       darkTheme: MyAppTheme.darkTheme,
+      initialBinding: GeneralBindings(),
       home: const Scaffold(backgroundColor: AppColors.primary, body: Center(child: CircularProgressIndicator(color: Colors.white,),),),
     );
   }

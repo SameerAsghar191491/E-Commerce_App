@@ -1,6 +1,6 @@
 // ignore_for_file: unused_import
 
-import 'package:e_commerce_app/features/authentication/controllers/onboarding_controller.dart';
+import 'package:e_commerce_app/features/authentication/controllers/onboarding/onboarding_controller.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

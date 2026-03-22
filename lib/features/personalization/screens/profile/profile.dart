@@ -1,10 +1,16 @@
+import 'dart:io';
+
 import 'package:e_commerce_app/common/widgets/app_bar/custom_appbar.dart';
 import 'package:e_commerce_app/common/widgets/images/circular_image.dart';
 import 'package:e_commerce_app/common/widgets/text/section_heading.dart';
+import 'package:e_commerce_app/features/personalization/controllers/user_controller.dart';
+import 'package:e_commerce_app/features/personalization/screens/profile/widgets/changeName.dart';
 import 'package:e_commerce_app/features/personalization/screens/profile/widgets/profile_menu.dart';
 import 'package:e_commerce_app/utils/constants/image_strings.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -12,6 +18,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     return Scaffold(
       appBar: CustomAppBar(title: Text("Profile"), showBackArrow: true),
 
@@ -22,19 +29,21 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             children: [
               // -- Profile Picture
-              Column(
-                children: [
-                  CircularImage(
-                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                    image: AppImages.user,
-                    width: 80,
-                    height: 80,
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text("Change Profile Picture"),
-                  ),
-                ],
+              Obx(() {
+                String profilePicture = controller.user.value.profilePicture!;
+                final image = profilePicture.isNotEmpty
+                    ? profilePicture
+                    : AppImages.user;
+                return CircularImage(
+                  isNetworkImage: profilePicture.isNotEmpty,
+                  image: image,
+                  width: 80,
+                  height: 80,
+                );
+              }),
+              TextButton(
+                child: const Text("Change Profile Picture"),
+                onPressed: () => controller.changeProfilePicture(),
               ),
 
               // Details
@@ -45,20 +54,28 @@ class ProfileScreen extends StatelessWidget {
                 title: "Profile Information",
                 showActionButton: false,
               ),
-              const SizedBox(height: AppSizes.spaceBtwItems),
-
               ProfileMenu(
                 title: "Name",
-                value: "Coding with Sameer",
-                onPressed: () {},
+                value: controller.user.value.fullName ?? "",
+                onPressed: () => Get.to(() => Changename()),
               ),
+              // ProfileMenu(
+              //   title: "First Name",
+              //   value: controller.user.value.firstName ?? "",
+              //   onPressed: () {},
+              // ),
+              // ProfileMenu(
+              //   title: "LastName",
+              //   value: controller.user.value.lastName ?? "",
+              //   onPressed: () {},
+              // ),
               ProfileMenu(
                 title: "UserName",
-                value: "coding_with_sameer",
+                value: controller.user.value.userName ?? "",
                 onPressed: () {},
               ),
 
-              const SizedBox(height: AppSizes.spaceBtwItems),
+              // const SizedBox(height: AppSizes.spaceBtwItems),
               const Divider(),
               const SizedBox(height: AppSizes.spaceBtwItems),
 
@@ -71,18 +88,30 @@ class ProfileScreen extends StatelessWidget {
 
               ProfileMenu(
                 title: "User ID",
-                value: "45689",
-                onPressed: () {},
+                value: controller.user.value.id ?? "",
+                onPressed: () async {
+                  await Clipboard.setData(
+                    ClipboardData(text: controller.user.value.id ?? ""),
+                  );
+                  // ScaffoldMessenger.of(Get.overlayContext!).showSnackBar(
+                  //   const SnackBar(content: Text('Text copied to clipboard')),
+                  // );
+                },
                 icon: Iconsax.copy,
               ),
               ProfileMenu(
                 title: "E-mail",
-                value: "coding_with_t",
-                onPressed: () {},
+                value: controller.user.value.email ?? "",
+                onPressed: () async {
+                  await Clipboard.setData(
+                    ClipboardData(text: controller.user.value.email ?? ""),
+                  );
+                },
+                icon: Iconsax.copy,
               ),
               ProfileMenu(
                 title: "Phone Number",
-                value: "+92-317-8059528",
+                value: controller.user.value.phoneNumber ?? "",
                 onPressed: () {},
               ),
               ProfileMenu(title: "Gender", value: "Male", onPressed: () {}),
@@ -96,9 +125,9 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(height: AppSizes.spaceBtwItems),
               Center(
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () => controller.deleteUserAccount(),
                   child: Text(
-                    "Close Account",
+                    "Delete Account",
                     style: TextStyle(color: Colors.red),
                   ),
                 ),

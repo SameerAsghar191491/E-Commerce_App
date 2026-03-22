@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/features/authentication/controllers/login/login_controller.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/constants/image_strings.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
@@ -19,7 +20,7 @@ class SocialButtons extends StatelessWidget {
             shape: BoxShape.circle,
           ),
           child: IconButton(
-            onPressed: () {},
+            onPressed: () => LoginController.instance.googleSignIn(),
             icon: Image(
               image: AssetImage(AppImages.google),
               height: AppSizes.iconMd,
